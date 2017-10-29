@@ -77,9 +77,12 @@ with open("input/itcont.txt") as f:
 	with open('output/medianvals_by_zip.txt','w') as wf:
 		
 		for line in f:
+			
+			line_info = line.split('|')
+			if(len(line_info) != 21):
+				continue
 			rightZipFormat = True
 			rightDateFormat = True
-			line_info = line.split('|')
 			cmteId = line_info[0]
 			zipCode = line_info[10]			
 			date = line_info[13]
