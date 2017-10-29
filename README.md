@@ -1,15 +1,15 @@
 # Zhuoyin Chen -- find-political-donors
 Here is my implementation of the coding challenge.
 # Approach
-I designed two classes, the class zipInfo contains information used by outputing to medianvals_by_zip.txt, and the class dateInfo contains information used when outputing to medianvals_by_date.txt.
+I designed two classes, the class zipInfo contains information used when outputing to medianvals_by_zip.txt, and the class dateInfo contains information used when outputing to medianvals_by_date.txt.
 
 For zipInfo class, I created one object for each distiguished zipcode. 
 1. Used totalAmt to keep total transaction amount for certain zipcode.
 2. Used size to keep total number of transactions for certain zipcode. 
-3. Since we need to calculate the median during running time, I used two priorityqueues, one of which contains smaller half part of data as max heap, and the other one contains larger half part of data as min heap. Keep these two heap balancing in number for every line, then we can get the median number.
+3. Since we need to calculate the median during running time, I used two priorityqueues, one of which contains smaller half part of data as max heap, and the other one contains larger half part of data as min heap. Keep these two heap balancing in size for every line, then we can get the median number.
 4. Used a hashmap zip_zipInfo whose key is zipcode and value is zipInfo object to accumulate data for same zipcode during running time.
 
-For dateInfo calss, I created one object for each distinguished date.
+For dateInfo class, I created one object for each distinguished date.
 1. Used totalAmt to keep total transaction amount for certain date.
 2. Used size to keep total number of transactions for certain date.
 3. Same approach to calculate the median as in zipInfo class.
