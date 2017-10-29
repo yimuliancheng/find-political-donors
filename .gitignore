@@ -1,2 +1,5 @@
 insight_testsuite/temp
 insight_testsuite/results.txt
+input/itcont.txt
+output/medianvals_by_date.txt
+output/medianvals_by_zip.txt

@@ -71,21 +71,19 @@ class dateInfo:
 zip_zipInfo = {}
 ### dict date - dateClass
 date_dateInfo = {}
-### flag for zip format
-rightZipFormat = True
-### flag for date format
-rightDateFormat = True
 
 
 with open("input/itcont.txt") as f:
 	with open('output/medianvals_by_zip.txt','w') as wf:
 		
 		for line in f:
+			rightZipFormat = True
+			rightDateFormat = True
 			line_info = line.split('|')
 			cmteId = line_info[0]
 			zipCode = line_info[10]			
 			date = line_info[13]
-			amount = int(line_info[14])
+			amount = line_info[14]
 			otherId = line_info[15]
 
 			### Precheck otherId -> empty, cmteId -> not empty, amount -> not empty
@@ -93,22 +91,24 @@ with open("input/itcont.txt") as f:
 				continue
 
 			### Precheck the format of zipCode, empty, length, alldigit
-			if(len(zipCode) < 5 or zipCode == "" or zipCode.isdigit() == False):
+			if(len(zipCode) < 5 or len(zipCode) > 9 or zipCode == "" or zipCode.isdigit() == False):
 				rightZipFormat = False
 
 			### Precheck the format of date, empty, length, alldigit, date validation
 			if(date == "" or len(date) != 8 or date.isdigit() ==  False):
 				rightDateFormat = False
 
-			month = int(date[0:2])
-			day = int(date[2:4])
-			year = int(date[4:8])
+			if(rightDateFormat == True):
+				month = int(date[0:2])
+				day = int(date[2:4])
+				year = int(date[4:8])
 
-			try:
-				newDate = datetime.datetime(year, month, day)
-			except ValueError:
-				rightDateFormat = False
+				try:
+					newDate = datetime.datetime(year, month, day)
+				except ValueError:
+					rightDateFormat = False
 
+			amount = int(amount)
 			### Output to zip.txt if zipCode format is correct
 			if (rightZipFormat ==  True):
 				zipCode = zipCode[0:5]
